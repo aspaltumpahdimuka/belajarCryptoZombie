@@ -13,6 +13,25 @@ Kontrak adalah blok bangunan fundamental dari aplikasi Ethereum - semua variabel
 termasuk dalam kontrak, dan ini akan menjadi titik awal dari semua proyek Anda.
 */
 contract ZombieFactory {
+
+    // Event adalah cara bagi kontrak Anda untuk mengomunikasikan bahwa sesuatu telah terjadi 
+    // di blockchain ke front-end aplikasi Anda, 
+    // yang dapat 'mendengarkan' event tertentu dan mengambil tindakan saat peristiwa itu 
+    // terjadi.
+    // declare the event
+    // event IntegersAdded(uint x, uint y, uint result);
+
+    // function add(uint _x, uint _y) public returns (uint) {
+    //     uint result = _x + _y;
+    //     // fire an event to let the app know the function was called:
+    //     emit IntegersAdded(_x, _y, result);
+    //     return result;
+    // }
+
+    event NewZombie(uint zombieId, string name, uint dna);
+
+
+
     /*
     Variabel state disimpan secara permanen dalam penyimpanan kontrak. 
     Ini berarti variabel tersebut ditulis ke blockchain Ethereum. 
@@ -151,7 +170,12 @@ contract ZombieFactory {
 
         // // Membuat Zombie dengan nama dan dna sesuai
         // parameter pada function createZombie lalu dimasukkan ke array zombies.
-        zombies.push(Zombie(_name, _dna)); 
+        // lalu menyimpannya di variable id, karena array.push mengembalikan panjang arrya,
+        // maka uint id dikurang 1 membuatnya sesuai dengan index array.
+        uint id = zombies.push(Zombie(_name, _dna)) - 1; 
+
+        // memanggil event
+        emit NewZombie(id, _name, _dna);
 
     }
 
