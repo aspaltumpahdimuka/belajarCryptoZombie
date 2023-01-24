@@ -180,6 +180,43 @@ contract ZombieFactory {
     // Jadi dalam kasus ini kita akan mendeklarasikan fungsi tersebut sebagai fungsi pure.
 
     function _generateRandomDna(string memory _str) private view returns (uint) {
-        
+        // Kita ingin fungsi _generateRandomDna mengembalikan sebuah uint (semi) acak. 
+        // Bagaimana kita bisa mencapai hal ini?
+
+        // Ethereum memiliki fungsi hash keccak256 di dalamnya, 
+        // yang merupakan versi SHA3. Fungsi hash pada dasarnya memetakan sebuah input 
+        // ke dalam sebuah angka heksadesimal 256-bit acak. 
+        // Sedikit perubahan pada input akan menyebabkan perubahan besar pada hash.
+
+        // Fungsi ini berguna untuk berbagai tujuan di Ethereum, 
+        // tetapi untuk saat ini kita hanya akan menggunakannya untuk pembuatan bilangan 
+        // acak semu.
+
+        // Yang juga penting, keccak256 mengharapkan satu parameter bertipe byte. 
+        // Ini berarti kita harus "pack" parameter apa pun sebelum memanggil keccak256:
+
+        // //6e91ec6b618bb462a4a6ee5aa2cb0e9cf30f7a052bb467b0ba58b8748c00d2e5
+        // keccak256(abi.encodePacked("aaaab"));
+        // //b1f078126895a1424524de5321b339ab00408010b7cf0e6ed451514981e58aa9
+        // keccak256(abi.encodePacked("aaaac"));
+        // Seperti yang Anda lihat, nilai yang dikembalikan benar-benar berbeda 
+        // meskipun hanya ada perubahan 1 karakter dalam input.
+
+        // Terkadang Anda perlu mengonversi antar tipe data. 
+        // Perhatikan contoh berikut ini:
+        // uint8 a = 5;
+        // uint b = 6;
+        // // throws an error because a * b returns a uint, not uint8:
+        // uint8 c = a * b;
+        // // we have to typecast b as a uint8 to make it work:
+        // uint8 c = a * uint8(b);
+        // Pada contoh di atas, a * b mengembalikan sebuah uint, 
+        // tetapi kita mencoba menyimpannya sebagai uint8, 
+        // yang dapat menyebabkan masalah potensial. 
+        // Dengan menyimpannya sebagai uint8, maka ia akan berfungsi dan 
+        // kompiler tidak akan memberikan kesalahan.
+
+        uint rand = uint(keccak256(abi.encodePacked(_str)));
+        return rand % dnaModulus;
     }
 }
