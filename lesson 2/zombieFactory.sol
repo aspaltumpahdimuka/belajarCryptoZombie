@@ -135,3 +135,34 @@ function whatIsMyNumber() public view returns (uint) {
     }
 
 }
+
+// Kode game kita menjadi sangat panjang. Daripada membuat satu kontrak yang sangat panjang, 
+// terkadang masuk akal untuk membagi logika kode Anda menjadi beberapa kontrak untuk mengatur 
+// kode.
+
+// Salah satu fitur Solidity yang membuat hal ini lebih mudah dikelola adalah pewarisan 
+// kontrak:
+
+// contract Doge {
+//   function catchphrase() public returns (string memory) {
+//     return "So Wow CryptoDoge";
+//   }
+// }
+
+// contract BabyDoge is Doge {
+//   function anotherCatchphrase() public returns (string memory) {
+//     return "Such Moon BabyDoge";
+//   }
+// }
+
+// BabyDoge mewarisi dari Doge. Ini berarti jika Anda mengkompilasi dan menggunakan BabyDoge, 
+// ia akan memiliki akses ke catchphrase() dan otherCatchphrase() 
+// (dan fungsi-fungsi publik lain yang dapat kita definisikan di Doge).
+
+// Ini dapat digunakan untuk pewarisan logika (seperti pada subkelas, Kucing adalah Hewan). 
+// Tetapi juga bisa digunakan untuk mengatur kode Anda dengan mengelompokkan logika yang sama 
+// ke dalam kontrak yang berbeda.
+
+contract ZombieFeeding is ZombieFactory {
+    
+}
