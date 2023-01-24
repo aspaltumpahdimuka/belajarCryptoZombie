@@ -52,7 +52,25 @@ contract ZombieFactory {
     mapping (uint => address) public zombieToOwner;
     mapping (address => uint) ownerZombieCount;
 
-    function _createZombie(string memory _name, uint _dna) private {
+    // Jika Anda mencoba mengkompilasinya, kompiler akan memberikan kesalahan.
+
+    // Masalahnya adalah kita mencoba memanggil fungsi _createZombie dari dalam ZombieFeeding, 
+    // tetapi _createZombie adalah fungsi privat di dalam ZombieFactory. 
+    // Ini berarti tidak ada kontrak yang diwarisi dari ZombieFactory yang dapat mengaksesnya.
+
+    // Selain publik dan privat, Solidity memiliki dua jenis visibilitas untuk fungsi-fungsi: 
+    // internal dan eksternal.
+
+    // Internal sama dengan privat, kecuali bahwa ia juga dapat diakses oleh kontrak 
+    // yang mewarisi kontrak ini. (Hei, kedengarannya seperti yang kita inginkan di sini!).
+
+    // eksternal mirip dengan publik, kecuali bahwa fungsi-fungsi ini HANYA dapat dipanggil di 
+    // luar kontrak - mereka tidak dapat dipanggil oleh fungsi-fungsi lain di dalam kontrak itu. 
+    // Kita akan membahas mengapa Anda mungkin ingin menggunakan external vs public nanti.
+
+    // Untuk mendeklarasikan fungsi internal atau eksternal, 
+    // sintaksnya sama dengan private dan public:
+    function _createZombie(string memory _name, uint _dna) internal {
         zombies.push(Zombie(_name, _dna));
         uint id = zombies.length - 1;
 
