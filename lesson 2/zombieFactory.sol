@@ -163,6 +163,6 @@ function whatIsMyNumber() public view returns (uint) {
 // Tetapi juga bisa digunakan untuk mengatur kode Anda dengan mengelompokkan logika yang sama 
 // ke dalam kontrak yang berbeda.
 
-contract ZombieFeeding is ZombieFactory {
-    
-}
+// contract ZombieFeeding is ZombieFactory {
+
+// }
