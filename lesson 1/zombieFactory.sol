@@ -86,4 +86,34 @@ contract ZombieFactory {
     // Membuat array publik bernama zombies dari struct Zombie
     Zombie[] public zombies;
 
+    // Deklarasi fungsi dalam solidity 
+    // terlihat seperti berikut ini:
+    // function eatHamburgers(string memory _name, uint _amount) public {
+
+    // }
+
+    // Ini adalah sebuah fungsi bernama eatHamburger yang mengambil 2 parameter: 
+    // sebuah string dan sebuah uint. Untuk saat ini, badan fungsi masih kosong. 
+    // Perhatikan bahwa kita menetapkan visibilitas fungsi sebagai publik. 
+    // Kami juga memberikan instruksi tentang di mana variabel _name harus disimpan - 
+    // di dalam memory. Hal ini diperlukan untuk semua tipe referensi seperti 
+    // array, struct, mapping, dan string.
+
+    // Nah, ada dua cara untuk mengoper argumen ke fungsi Solidity:
+
+    // Dengan value, yang berarti kompiler Solidity membuat salinan baru dari nilai parameter 
+    // dan meneruskannya ke fungsi Anda. Hal ini memungkinkan fungsi Anda untuk memodifikasi 
+    // nilai tanpa perlu khawatir nilai parameter awal akan berubah.
+
+    // Dengan referensi, yang berarti bahwa fungsi Anda dipanggil dengan ... referensi 
+    // ke variabel asli. Dengan demikian, jika fungsi Anda mengubah nilai variabel 
+    // yang diterimanya, nilai variabel asli akan berubah.
+
+    // Catatan: Sudah menjadi konvensi (tetapi tidak wajib) 
+    // untuk memulai nama variabel parameter fungsi dengan garis bawah (_) 
+    // untuk membedakannya dari variabel global.
+
+    function createZombie(string memory _name, uint _dna); public {
+        
+    }
 }
