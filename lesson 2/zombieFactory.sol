@@ -55,6 +55,41 @@ contract ZombieFactory {
     function _createZombie(string memory _name, uint _dna) private {
         zombies.push(Zombie(_name, _dna));
         uint id = zombies.length - 1;
+
+        // Dalam Solidity, ada beberapa variabel global tertentu yang tersedia untuk 
+        // semua fungsi. Salah satunya adalah msg.sender, yang merujuk pada alamat 
+        // orang (atau smart contract) yang memanggil fungsi saat ini.
+        // Catatan: Dalam Solidity, eksekusi fungsi selalu harus dimulai 
+        // dengan pemanggil eksternal. 
+        // Sebuah kontrak hanya akan berada di blockchain tanpa melakukan apa pun sampai 
+        // seseorang memanggil salah satu fungsinya. Jadi akan selalu ada msg.sender.
+
+        // mapping (address => uint) favoriteNumber;
+
+        // function setMyNumber(uint _myNumber) public {
+        //  // Update our `favoriteNumber` mapping to store `_myNumber` under `msg.sender`
+        //     favoriteNumber[msg.sender] = _myNumber;
+        // // ^ The syntax for storing data in a mapping is just like with arrays
+        // }
+
+        // Pada contoh sepele ini, siapa pun dapat memanggil setMyNumber dan menyimpan 
+        // sebuah uint di dalam kontrak kita, yang akan diikat ke alamat mereka. 
+        // Kemudian ketika mereka memanggil whatIsMyNumber, mereka akan mendapatkan 
+        // uint yang mereka simpan.
+
+        // Menggunakan msg.sender memberikan Anda keamanan blockchain Ethereum - satu-satunya 
+        // cara seseorang dapat memodifikasi data orang lain adalah dengan mencuri private key 
+        // yang terkait dengan alamat Ethereum mereka.
+
+        zombieToOwner[id] = msg.sender;
+        ownerZombieCount[msg.sender]++;
+
+function whatIsMyNumber() public view returns (uint) {
+  // Retrieve the value stored in the sender's address
+  // Will be `0` if the sender hasn't called `setMyNumber` yet
+  return favoriteNumber[msg.sender];
+}
+
         emit NewZombie(id, _name, _dna);
 
     }
