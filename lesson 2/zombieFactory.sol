@@ -100,6 +100,36 @@ function whatIsMyNumber() public view returns (uint) {
     }
 
     function createRandomZombie(string memory _name) public {
+
+        // Pada pelajaran 1, kita telah membuatnya agar pengguna dapat membuat zombie baru 
+        // dengan memanggil createRandomZombie dan memasukkan nama. 
+        // Namun, jika pengguna dapat terus memanggil fungsi ini untuk membuat zombie tanpa 
+        // batas dalam pasukan mereka, permainan tidak akan menyenangkan.
+
+        // Mari kita buat agar setiap pemain hanya dapat memanggil fungsi ini sekali saja. 
+        // Dengan begitu, pemain baru akan memanggilnya saat pertama kali memulai permainan 
+        // untuk membuat zombie awal dalam pasukan mereka.
+
+        // Bagaimana cara membuatnya agar fungsi ini hanya dapat dipanggil sekali per pemain?
+
+        // Untuk itu kita menggunakan require. require membuatnya agar fungsi akan 
+        // melemparkan kesalahan dan berhenti dieksekusi jika ada kondisi yang tidak benar:
+
+        // function sayHiToVitalik(string memory _name) public returns (string memory) {
+        // // Compares if _name equals "Vitalik". Throws an error and exits if not true.
+        // // (Side note: Solidity doesn't have native string comparison, so we
+        // // compare their keccak256 hashes to see if the strings are equal)
+        //     require(keccak256(abi.encodePacked(_name)) == keccak256(abi.encodePacked("Vitalik")));
+        // // If it's true, proceed with the function:
+        //     return "Hi!";
+        // }
+        // Jika Anda memanggil fungsi ini dengan sayHiToVitalik("Vitalik"), 
+        // fungsi ini akan mengembalikan "Hai!". Jika Anda memanggilnya dengan input lain, 
+        // fungsi ini akan melemparkan kesalahan dan tidak akan dijalankan.
+
+        // Dengan demikian, require sangat berguna untuk memverifikasi kondisi tertentu 
+        // yang harus benar sebelum menjalankan sebuah fungsi.
+        require(ownerZombieCount[msg.sender] == 0);
         uint randDna = _generateRandomDna(_name);
         _createZombie(_name, randDna);
     }
