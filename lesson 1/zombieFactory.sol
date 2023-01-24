@@ -154,4 +154,32 @@ contract ZombieFactory {
         zombies.push(Zombie(_name, _dna)); 
 
     }
+
+    // Untuk mengembalikan nilai dari sebuah fungsi, deklarasinya terlihat seperti ini:
+
+    // string greeting = "What's up dog";
+
+    // function sayHello() public returns (string memory) {
+    // return greeting;
+    // }
+
+    // Fungsi di atas tidak benar-benar mengubah status di Solidity - 
+    // misalnya tidak mengubah nilai apa pun atau menulis apa pun.
+
+    // Jadi dalam kasus ini kita dapat mendeklarasikannya sebagai fungsi view, 
+    // yang berarti fungsi ini hanya melihat data tetapi tidak memodifikasinya:
+    // function sayHello() public view returns (string memory) {}
+
+    // Solidity juga berisi fungsi pure, yang berarti Anda bahkan tidak mengakses data apa pun 
+    // dalam aplikasi. Pertimbangkan yang berikut ini
+    // function _multiply(uint a, uint b) private pure returns (uint) {
+    // return a * b;
+    // }
+    // Fungsi ini bahkan tidak membaca dari state aplikasi - 
+    // nilai kembalinya hanya bergantung pada parameter fungsinya. 
+    // Jadi dalam kasus ini kita akan mendeklarasikan fungsi tersebut sebagai fungsi pure.
+
+    function _generateRandomDna(string memory _str) private view returns (uint) {
+        
+    }
 }
