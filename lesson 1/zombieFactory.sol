@@ -113,7 +113,20 @@ contract ZombieFactory {
     // untuk memulai nama variabel parameter fungsi dengan garis bawah (_) 
     // untuk membedakannya dari variabel global.
 
-    function createZombie(string memory _name, uint _dna); public {
+    // Dalam Solidity, fungsi bersifat public secara default. 
+    // Ini berarti setiap orang (atau kontrak lainnya) dapat memanggil fungsi kontrak Anda 
+    // dan menjalankan kodenya.
+
+    // Tentu saja hal ini tidak selalu diinginkan, dan dapat membuat kontrak Anda 
+    // rentan terhadap serangan. Oleh karena itu, merupakan praktik yang baik untuk menandai 
+    // fungsi Anda sebagai private secara default, dan kemudian hanya membuat 
+    // fungsi public yang ingin Anda publikasikan kepada dunia.
+
+    // Seperti yang Anda lihat, kita menggunakan kata kunci private setelah nama fungsi. 
+    // Dan seperti halnya parameter fungsi, sudah menjadi konvensi untuk memulai nama 
+    // fungsi privat dengan garis bawah (_).
+
+    function _createZombie(string memory _name, uint _dna); private {
         // Sekarang kita akan mempelajari cara membuat Persons baru dan menambahkannya 
         // ke dalam susunan people.
         // // create a New Person:
