@@ -114,6 +114,31 @@ contract ZombieFactory {
     // untuk membedakannya dari variabel global.
 
     function createZombie(string memory _name, uint _dna); public {
-        
+        // Sekarang kita akan mempelajari cara membuat Persons baru dan menambahkannya 
+        // ke dalam susunan people.
+        // // create a New Person:
+        // Person satoshi = Person(172, "Satoshi");
+
+        // // Add that person to the Array:
+        // people.push(satoshi);
+
+        // Kita juga dapat menggabungkannya dan melakukannya dalam satu baris kode 
+        // untuk menjaga agar tetap bersih:
+
+        // people.push(Person(16, "Vitalik"));
+
+        // Perhatikan bahwa array.push() menambahkan sesuatu ke akhir array, 
+        // sehingga elemen-elemennya sesuai dengan urutan yang kita tambahkan. 
+        // Lihat contoh berikut ini:
+        // uint[] numbers;
+        // numbers.push(5);
+        // numbers.push(10);
+        // numbers.push(15);
+        // // numbers is now equal to [5, 10, 15]
+
+        // // Membuat Zombie dengan nama dan dna sesuai
+        // parameter pada function createZombie lalu dimasukkan ke array zombies.
+        zombies.push(Zombie(_name, _dna)); 
+
     }
 }
