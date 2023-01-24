@@ -13,5 +13,15 @@ Kontrak adalah blok bangunan fundamental dari aplikasi Ethereum - semua variabel
 termasuk dalam kontrak, dan ini akan menjadi titik awal dari semua proyek Anda.
 */
 contract ZombieFactory {
-    
+    /*
+    Variabel state disimpan secara permanen dalam penyimpanan kontrak. 
+    Ini berarti variabel tersebut ditulis ke blockchain Ethereum. 
+    Anggap saja seperti menulis ke DB.
+    */
+
+    /*
+    Tipe data uint adalah bilangan bulat tidak bertanda, yang berarti nilainya harus 
+    non-negatif. Ada juga tipe data int untuk bilangan bulat bertanda.
+    */
+    uint dnaDigits = 16;
 }
