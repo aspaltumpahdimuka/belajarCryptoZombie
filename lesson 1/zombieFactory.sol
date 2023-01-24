@@ -38,4 +38,22 @@ contract ZombieFactory {
     Solidity juga mendukung operator eksponensial (yaitu "x pangkat y", x^y):
     */
     uint dnaModulus = 10 ** dnaDigits; // 10^16
+
+    /*
+    Struct memungkinkan Anda membuat tipe data yang lebih rumit yang memiliki 
+    banyak properti.
+    */
+
+    /*
+    
+    Perhatikan bahwa kami baru saja memperkenalkan tipe baru, string. 
+    String digunakan untuk data UTF-8 dengan panjang sembarang. 
+    Contoh: string salam = "Halo dunia!"
+    */
+
+    // membuat struct Zombie
+    struct Zombie {
+        string name; // propert name bertipe string
+        uint dna; // properti dna bertipe uint
+    }
 }
