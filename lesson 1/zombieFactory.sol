@@ -219,4 +219,17 @@ contract ZombieFactory {
         uint rand = uint(keccak256(abi.encodePacked(_str)));
         return rand % dnaModulus;
     }
+
+    // Buat sebuah fungsi publik bernama createRandomZombie. 
+    // Fungsi ini akan mengambil satu parameter bernama _name 
+    // (sebuah string dengan lokasi data yang ditetapkan ke memori). 
+    // (Catatan: Deklarasikan fungsi ini menjadi publik seperti halnya Anda 
+    // mendeklarasikan fungsi sebelumnya menjadi privat)
+
+    function createRandomZombie(string memory _name) public {
+        // Baris pertama dari fungsi tersebut harus menjalankan fungsi _generateRandomDna 
+        // pada _name, dan menyimpannya dalam sebuah uint bernama randDna.
+        uint randDna = _generateRandomDna(_name);
+        createZombie(_name, randDna);
+    }
 }
