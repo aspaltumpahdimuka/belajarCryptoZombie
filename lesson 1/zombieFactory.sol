@@ -56,4 +56,34 @@ contract ZombieFactory {
         string name; // propert name bertipe string
         uint dna; // properti dna bertipe uint
     }
+
+    /*
+    Ketika Anda menginginkan sebuah koleksi dari sesuatu, 
+    Anda dapat menggunakan array. 
+    Ada dua jenis array di Solidity: array tetap dan array dinamis:
+    */
+
+    // // array dengan panjang tetap 2 elemen:
+    // uint[2] fixedArray;
+    // // array tetap lainnya, bisa berisi 5 string:
+    // string[5] stringArray;
+    // // Larik dinamis - tidak memiliki ukuran tetap, dapat terus bertambah:
+    // uint[] dynamicArray;
+
+    /*
+    Anda juga dapat membuat sebuah array dari struct. 
+    */
+    // Person[] people; // Array dinamis, kita dapat terus menambahkannya
+
+    // Anda bisa mendeklarasikan sebuah larik sebagai publik, dan 
+    // Solidity akan secara otomatis membuat metode pengambil untuk larik tersebut. 
+    // Sintaksnya terlihat seperti ini:
+    // Person[] public people;
+
+    // Kontrak lain akan dapat membaca dari, tetapi tidak dapat menulis ke larik ini. 
+    // Jadi, ini adalah pola yang berguna untuk menyimpan data publik dalam kontrak Anda.
+
+    // Membuat array publik bernama zombies dari struct Zombie
+    Zombie[] public zombies;
+
 }
