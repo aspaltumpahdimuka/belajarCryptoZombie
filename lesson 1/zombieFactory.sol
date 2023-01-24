@@ -145,7 +145,7 @@ contract ZombieFactory {
     // Dan seperti halnya parameter fungsi, sudah menjadi konvensi untuk memulai nama 
     // fungsi privat dengan garis bawah (_).
 
-    function _createZombie(string memory _name, uint _dna); private {
+    function _createZombie(string memory _name, uint _dna) private {
         // Sekarang kita akan mempelajari cara membuat Persons baru dan menambahkannya 
         // ke dalam susunan people.
         // // create a New Person:
@@ -172,7 +172,8 @@ contract ZombieFactory {
         // parameter pada function createZombie lalu dimasukkan ke array zombies.
         // lalu menyimpannya di variable id, karena array.push mengembalikan panjang arrya,
         // maka uint id dikurang 1 membuatnya sesuai dengan index array.
-        uint id = zombies.push(Zombie(_name, _dna)) - 1; 
+        zombies.push(Zombie(_name, _dna));
+        uint id = zombies.length - 1;
 
         // memanggil event
         emit NewZombie(id, _name, _dna);
@@ -254,6 +255,6 @@ contract ZombieFactory {
         // Baris pertama dari fungsi tersebut harus menjalankan fungsi _generateRandomDna 
         // pada _name, dan menyimpannya dalam sebuah uint bernama randDna.
         uint randDna = _generateRandomDna(_name);
-        createZombie(_name, randDna);
+        _createZombie(_name, randDna);
     }
 }
