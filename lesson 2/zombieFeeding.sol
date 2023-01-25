@@ -14,6 +14,65 @@ pragma solidity ^0.8.17;
 // Solidity menggunakan kata kunci import:
 import './zombieFactory.sol';
 
+// Agar kontrak kita dapat berbicara dengan kontrak lain di blockchain yang bukan milik kita, 
+// pertama-tama kita perlu mendefinisikan sebuah antarmuka.
+
+// Mari kita lihat sebuah contoh sederhana. Katakanlah ada sebuah kontrak di blockchain 
+// yang terlihat seperti ini:
+// contract LuckyNumber {
+//   mapping(address => uint) numbers;
+
+//   function setNum(uint _num) public {
+//     numbers[msg.sender] = _num;
+//   }
+
+//   function getNum(address _myAddress) public view returns (uint) {
+//     return numbers[_myAddress];
+//   }
+// }
+// Ini akan menjadi sebuah kontrak sederhana di mana setiap orang dapat menyimpan 
+// nomor keberuntungan mereka, dan nomor tersebut akan dikaitkan dengan alamat Ethereum mereka. 
+// Kemudian orang lain dapat mencari nomor keberuntungan orang tersebut dengan menggunakan 
+// alamat mereka.
+
+// Sekarang katakanlah kita memiliki kontrak eksternal yang ingin membaca data dalam 
+// kontrak ini menggunakan fungsi getNum.
+
+// Pertama, kita harus mendefinisikan antarmuka kontrak LuckyNumber:
+// contract NumberInterface {
+//   function getNum(address _myAddress) public view returns (uint);
+// }
+// Perhatikan bahwa ini terlihat seperti mendefinisikan kontrak, dengan beberapa perbedaan. 
+// Pertama, kita hanya mendeklarasikan fungsi yang ingin kita gunakan untuk berinteraksi - 
+// dalam hal ini getNum - dan kita tidak menyebutkan fungsi atau variabel state lainnya.
+
+// Kedua, kita tidak mendefinisikan badan fungsi. Alih-alih menggunakan kurung kurawal ({ dan }), 
+// kita cukup mengakhiri deklarasi fungsi dengan tanda titik dua (;).
+
+// Jadi, bentuknya seperti kerangka kontrak. Dengan cara inilah kompiler tahu bahwa itu adalah 
+// sebuah interface.
+
+// Dengan menyertakan antarmuka ini di dalam kode dapp, kontrak kita mengetahui seperti apa 
+// fungsi-fungsi kontrak lainnya, bagaimana cara memanggilnya, dan respons seperti apa yang diharapkan.
+
+// Kita akan membahas cara memanggil fungsi-fungsi kontrak lain di pelajaran selanjutnya, 
+// tetapi untuk saat ini mari kita mendeklarasikan antarmuka untuk kontrak CryptoKitties.
+
+contract KittyInterface {
+  function getKitty(uint256 _id) external view returns (
+    bool isGestating,
+    bool isReady,
+    uint256 cooldownIndex,
+    uint256 nextActionAt,
+    uint256 siringWithId,
+    uint256 birthTime,
+    uint256 matronId,
+    uint256 sireId,
+    uint256 generation,
+    uint256 genes
+  );
+}
+
 contract ZombieFeeding is ZombieFactory {
     // Dalam Solidity, ada dua lokasi untuk menyimpan variabel - di penyimpanan dan di memori.
 
