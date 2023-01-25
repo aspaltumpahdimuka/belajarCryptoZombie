@@ -102,11 +102,11 @@ contract ZombieFactory {
         zombieToOwner[id] = msg.sender;
         ownerZombieCount[msg.sender]++;
 
-function whatIsMyNumber() public view returns (uint) {
-  // Retrieve the value stored in the sender's address
-  // Will be `0` if the sender hasn't called `setMyNumber` yet
-  return favoriteNumber[msg.sender];
-}
+// function whatIsMyNumber() public view returns (uint) {
+//   // Retrieve the value stored in the sender's address
+//   // Will be `0` if the sender hasn't called `setMyNumber` yet
+//   return favoriteNumber[msg.sender];
+// }
 
         emit NewZombie(id, _name, _dna);
 
