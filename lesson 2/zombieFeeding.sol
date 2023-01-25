@@ -58,7 +58,7 @@ import './zombieFactory.sol';
 // Kita akan membahas cara memanggil fungsi-fungsi kontrak lain di pelajaran selanjutnya, 
 // tetapi untuk saat ini mari kita mendeklarasikan antarmuka untuk kontrak CryptoKitties.
 
-interface KittyInterface {
+contract KittyInterface {
   function getKitty(uint256 _id) external view returns (
     bool isGestating,
     bool isReady,
@@ -70,10 +70,14 @@ interface KittyInterface {
     uint256 sireId,
     uint256 generation,
     uint256 genes
-  );
+  ) {}
 }
 
 contract ZombieFeeding is ZombieFactory {
+
+    address ckAddress = 0x145422e73271E672d733A5a94eFf1817CFdda9F0;
+    KittyInterface kittyContract = KittyInterface(ckAddress);
+
     // Dalam Solidity, ada dua lokasi untuk menyimpan variabel - di penyimpanan dan di memori.
 
     // Penyimpanan mengacu pada variabel yang disimpan secara permanen di blockchain. 
