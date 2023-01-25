@@ -133,17 +133,20 @@ contract ZombieFeeding is ZombieFactory {
 
     // Untuk saat ini, cukup memahami bahwa ada beberapa kasus di mana Anda perlu 
     // mendeklarasikan penyimpanan atau memori secara eksplisit!
-    function feedAndMultiply(uint _zombieId, uint _targetDna) public {
+    function feedAndMultiply(uint _zombieId, uint _targetDna, _species) public {
         require(msg.sender == zombieToOwner[_zombieId]);
         Zombie storage myZombie = zombies[_zombieId];
         _targetDna = _targetDna % dnaModulus;
         uint newDna = (myZombie.dna + _targetDna) / 2;
+        if (keccak256(abi.encodePacked(_species)) == keccak256(abi.encodePacked("kitty"))) {
+            newDna = newDna - newDna % 100 + 99;
+        }
         _createZombie("NoName", newDna);
     }
 
     function feedOnKitty(uint _zombieId, uint _kittyId) public {
         uint kittyDna; // deklarasi
         (,,,,,,,,,kittyDna) = kittyContract.getKitty(_kittyId); // menugaskan return terakhir getktty
-        feedAndMultiply(_zombieId, kittyDna);
+        feedAndMultiply(_zombieId, kittyDna, "kitty");
     }
 }
