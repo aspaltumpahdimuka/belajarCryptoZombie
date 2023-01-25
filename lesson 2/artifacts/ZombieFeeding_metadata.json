@@ -54,9 +54,32 @@
 						"internalType": "uint256",
 						"name": "_targetDna",
 						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "_species",
+						"type": "string"
 					}
 				],
 				"name": "feedAndMultiply",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_zombieId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_kittyId",
+						"type": "uint256"
+					}
+				],
+				"name": "feedOnKitty",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -140,10 +163,10 @@
 			]
 		},
 		"lesson 2/zombieFeeding.sol": {
-			"keccak256": "0x79ae4b68241f723df3b59e30eb40e6473ec741ef4135a9f1e692b57154aec7c9",
+			"keccak256": "0x4c1e84d6202d63944d60a7665b30ade4bdd98daf9bbc069ae0395618547f855b",
 			"urls": [
-				"bzz-raw://2cca4bf8e97ff9ad4ab45967e08064386f4cad7d65d7c74cc852e1eb13f4d2d9",
-				"dweb:/ipfs/QmdvhoNmhtjZpQdsAM2FXRmvw6PSHToxC93rSxWTvWYt72"
+				"bzz-raw://4cee4b95e37380faf7766cd5e7441fec8d04697d6351492971c08ed615d99765",
+				"dweb:/ipfs/QmNzShP8snFN41cFkC6MBSouxUwyRwKSRFnTcY6sqN753p"
 			]
 		}
 	},

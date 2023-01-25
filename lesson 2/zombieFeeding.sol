@@ -133,7 +133,7 @@ contract ZombieFeeding is ZombieFactory {
 
     // Untuk saat ini, cukup memahami bahwa ada beberapa kasus di mana Anda perlu 
     // mendeklarasikan penyimpanan atau memori secara eksplisit!
-    function feedAndMultiply(uint _zombieId, uint _targetDna, _species) public {
+    function feedAndMultiply(uint _zombieId, uint _targetDna, string memory _species) public {
         require(msg.sender == zombieToOwner[_zombieId]);
         Zombie storage myZombie = zombies[_zombieId];
         _targetDna = _targetDna % dnaModulus;
