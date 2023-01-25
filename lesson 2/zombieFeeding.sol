@@ -58,7 +58,7 @@ import './zombieFactory.sol';
 // Kita akan membahas cara memanggil fungsi-fungsi kontrak lain di pelajaran selanjutnya, 
 // tetapi untuk saat ini mari kita mendeklarasikan antarmuka untuk kontrak CryptoKitties.
 
-contract KittyInterface {
+interface KittyInterface {
   function getKitty(uint256 _id) external view returns (
     bool isGestating,
     bool isReady,
@@ -133,7 +133,7 @@ contract ZombieFeeding is ZombieFactory {
         require(msg.sender == zombieToOwner[_zombieId]);
         Zombie storage myZombie = zombies[_zombieId];
         _targetDna = _targetDna % dnaModulus;
-        uint storage newDna = (myZombie.dna + _targetDna) / 2;
+        uint newDna = (myZombie.dna + _targetDna) / 2;
         _createZombie("NoName", newDna);
     }
 }
